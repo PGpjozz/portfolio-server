@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +34,11 @@ SECRET_KEY = 'django-insecure-p$r3v-jt@31v&q8kb)l76%!p6k9f7v&lq%ue^u#ybvx=5m!!99
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'portfolio-server-2rj2.onrender.com',
+]
 
 
 MEDIA_URL = '/media/'
@@ -68,8 +73,12 @@ MIDDLEWARE = [
 # Allow your React frontend to access API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "portfolio-server-2rj2.onrender.com",
 ]
+
+# Optionally extend from env (comma-separated)
+cors_env = os.getenv('CORS_ALLOWED_ORIGINS')
+if cors_env:
+    CORS_ALLOWED_ORIGINS.extend([o.strip() for o in cors_env.split(',') if o.strip()])
 
 ROOT_URLCONF = 'backend.urls'
 
