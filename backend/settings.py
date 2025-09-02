@@ -71,14 +71,24 @@ MIDDLEWARE = [
 ]
 
 # Allow your React frontend to access API
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://portfolio-gold-eight-19.vercel.app",
 ]
 
 # Optionally extend from env (comma-separated)
 cors_env = os.getenv('CORS_ALLOWED_ORIGINS')
 if cors_env:
     CORS_ALLOWED_ORIGINS.extend([o.strip() for o in cors_env.split(',') if o.strip()])
+
+# CSRF trusted origins (for cookies/CSRF-protected endpoints)
+CSRF_TRUSTED_ORIGINS = [
+    "https://portfolio-gold-eight-19.vercel.app",
+]
+csrf_env = os.getenv('CSRF_TRUSTED_ORIGINS')
+if csrf_env:
+    CSRF_TRUSTED_ORIGINS.extend([o.strip() for o in csrf_env.split(',') if o.strip()])
 
 ROOT_URLCONF = 'backend.urls'
 
