@@ -68,7 +68,7 @@ MIDDLEWARE = [
 # Allow your React frontend to access API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "'portfolio-server-2rj2.onrender.com"
+    "portfolio-server-2rj2.onrender.com",
 ]
 
 ROOT_URLCONF = 'backend.urls'
